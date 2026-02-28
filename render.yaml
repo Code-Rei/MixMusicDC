@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: mixmusicdc
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: yarn install --frozen-lockfile
+    startCommand: node src/index.js
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: GENIUS_API_KEY
+        sync: false
+      - key: RENDER_URL
+        sync: false
+      - key: NODE_ENV
+        value: production

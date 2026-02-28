@@ -1,0 +1,58 @@
+# ── Dependencies ──────────────────────────────────────
+node_modules/
+
+# ── Environment variables (NEVER commit these) ────────
+.env
+
+# ── Logs ─────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── yt-dlp binary (auto-downloaded, platform-specific) ─
+bin/
+yt-dlp
+yt-dlp.exe
+
+# ── ffmpeg (if cached locally) ───────────────────────
+ffmpeg/
+
+# ── OS files ─────────────────────────────────────────
+.DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
+
+# ── Editor / IDE ─────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ── Build / Output ────────────────────────────────────
+dist/
+build/
+out/
+
+# ── Yarn ─────────────────────────────────────────────
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# ── Testing / Coverage ───────────────────────────────
+coverage/
+.nyc_output/
+
+# ── Temp / Misc ──────────────────────────────────────
+*.tmp
+*.swp
+out.txt
+out2.txt
+install.log

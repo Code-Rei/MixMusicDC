@@ -1,0 +1,25 @@
+name: Keep MixMusicDC Alive
+
+on:
+  schedule:
+    # Runs every 14 minutes to prevent Render free tier spin-down
+    - cron: "*/14 * * * *"
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  keep-alive:
+    name: Ping Render Service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Health Endpoint
+        run: |
+          echo "Pinging ${{ secrets.RENDER_URL }}/health ..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.RENDER_URL }}/health")
+          echo "Response status: $STATUS"
+          if [ "$STATUS" -ne 200 ]; then
+            echo "Warning: Health check returned $STATUS"
+          else
+            echo "✅ Service is alive!"
+          fi
+        env:
+          RENDER_URL: ${{ secrets.RENDER_URL }}
