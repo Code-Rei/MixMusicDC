@@ -1,9 +1,9 @@
+require('dotenv').config();
 const { Client, GatewayIntentBits, Collection, Partials } = require('discord.js');
 const { DisTube } = require('distube');
-const { YtDlpPlugin } = require('@distube/yt-dlp');
+const { SoundCloudPlugin } = require('@distube/soundcloud');
 const fs = require('fs');
 const path = require('path');
-const config = require('./config');
 
 let client;
 
@@ -19,8 +19,16 @@ function createClient() {
 
     client.commands = new Collection();
 
+    // Initialize DisTube with the SoundCloud Plugin and your Client ID
     client.distube = new DisTube(client, {
-        plugins: [new YtDlpPlugin({ update: false })],
+        emitNewSongOnly: true,
+        emitAddSongWhenCreatingQueue: false,
+        emitAddListWhenCreatingQueue: false,
+        plugins: [
+            new SoundCloudPlugin({
+                clientId: '1IzwHiVxAHeYKAMqN0IIGD3ZARgJy2kl' // Your extracted Client ID
+            })
+        ],
     });
 
     return client;
