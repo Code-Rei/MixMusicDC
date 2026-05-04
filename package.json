@@ -10,7 +10,7 @@
     "deploy-commands:guild": "node src/deploy-commands.js --guild"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.12.0"
   },
   "dependencies": {
     "@discordjs/opus": "^0.10.0",
