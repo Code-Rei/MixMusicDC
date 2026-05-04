@@ -16,7 +16,7 @@ module.exports = {
     async execute(interaction, client) {
         const queue = client.distube.getQueue(interaction.guild);
         if (!queue || queue.songs.length === 0) {
-            return interaction.reply({ embeds: [createErrorEmbed('The queue is empty.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('The queue is empty.')], flags: 64 });
         }
 
         const page = interaction.options.getInteger('page') || 1;

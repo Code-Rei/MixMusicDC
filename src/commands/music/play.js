@@ -1,10 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { SoundCloudPlugin } = require('@distube/soundcloud');
 
-// THE FIX: We create an active instance of the plugin to unlock the search function
-const scSearcher = new SoundCloudPlugin({
-    clientId: '1IzwHiVxAHeYKAMqN0IIGD3ZARgJy2kl'
-});
+// No clientId — the plugin auto-fetches a fresh one at runtime
+const scSearcher = new SoundCloudPlugin();
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,7 +20,7 @@ module.exports = {
         if (!voiceChannel) {
             return interaction.reply({
                 content: "❌ You need to be in a voice channel to play music!",
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -32,7 +30,7 @@ module.exports = {
         if (!query) {
             return interaction.reply({
                 content: "❌ I couldn't read your input! Please try again.",
-                ephemeral: true
+                flags: 64
             });
         }
 

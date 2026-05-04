@@ -2,6 +2,9 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, Collection, Partials } = require('discord.js');
 const { DisTube } = require('distube');
 const { SoundCloudPlugin } = require('@distube/soundcloud');
+// Point PATH to the bundled ffmpeg-static binary so DisTube can find it
+const ffmpegPath = require('ffmpeg-static');
+process.env.PATH = `${require('path').dirname(ffmpegPath)}${require('path').delimiter}${process.env.PATH}`;
 const fs = require('fs');
 const path = require('path');
 
@@ -24,10 +27,9 @@ function createClient() {
         emitNewSongOnly: true,
         emitAddSongWhenCreatingQueue: false,
         emitAddListWhenCreatingQueue: false,
+
         plugins: [
-            new SoundCloudPlugin({
-                clientId: '1IzwHiVxAHeYKAMqN0IIGD3ZARgJy2kl' // Your extracted Client ID
-            })
+            new SoundCloudPlugin() // auto-fetches a fresh clientId at runtime
         ],
     });
 

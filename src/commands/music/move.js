@@ -21,20 +21,20 @@ module.exports = {
     async execute(interaction, client) {
         const queue = client.distube.getQueue(interaction.guild);
         if (!queue) {
-            return interaction.reply({ embeds: [createErrorEmbed('No music is currently playing.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('No music is currently playing.')], flags: 64 });
         }
         if (interaction.member.voice?.channel?.id !== queue.voiceChannel?.id) {
-            return interaction.reply({ embeds: [createErrorEmbed('You must be in the same voice channel.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('You must be in the same voice channel.')], flags: 64 });
         }
 
         const from = interaction.options.getInteger('from');
         const to = interaction.options.getInteger('to');
 
         if (from >= queue.songs.length || to >= queue.songs.length) {
-            return interaction.reply({ embeds: [createErrorEmbed(`Invalid positions. Queue has \`${queue.songs.length - 1}\` queued songs.`)], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed(`Invalid positions. Queue has \`${queue.songs.length - 1}\` queued songs.`)], flags: 64 });
         }
         if (from === to) {
-            return interaction.reply({ embeds: [createErrorEmbed('From and To positions cannot be the same.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('From and To positions cannot be the same.')], flags: 64 });
         }
 
         const [song] = queue.songs.splice(from, 1);

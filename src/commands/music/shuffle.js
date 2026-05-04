@@ -9,13 +9,13 @@ module.exports = {
     async execute(interaction, client) {
         const queue = client.distube.getQueue(interaction.guild);
         if (!queue) {
-            return interaction.reply({ embeds: [createErrorEmbed('No music is currently playing.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('No music is currently playing.')], flags: 64 });
         }
         if (interaction.member.voice?.channel?.id !== queue.voiceChannel?.id) {
-            return interaction.reply({ embeds: [createErrorEmbed('You must be in the same voice channel.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('You must be in the same voice channel.')], flags: 64 });
         }
         if (queue.songs.length < 2) {
-            return interaction.reply({ embeds: [createErrorEmbed('Need at least 2 songs in the queue to shuffle.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('Need at least 2 songs in the queue to shuffle.')], flags: 64 });
         }
         await queue.shuffle();
         await interaction.reply({ embeds: [createSuccessEmbed(`🔀 Shuffled **${queue.songs.length}** songs!`)] });

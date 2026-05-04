@@ -11,7 +11,7 @@ module.exports = {
     async execute(interaction, client) {
         const queue = client.distube.getQueue(interaction.guild);
         if (!queue || queue.songs.length === 0) {
-            return interaction.reply({ embeds: [createErrorEmbed('The queue is empty.')], ephemeral: true });
+            return interaction.reply({ embeds: [createErrorEmbed('The queue is empty.')], flags: 64 });
         }
 
         const totalDuration = queue.songs.reduce((acc, s) => acc + (s.duration || 0), 0);
