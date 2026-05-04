@@ -60,7 +60,7 @@ module.exports = {
 
         const options = top.map((song, i) => {
             const artistName = song.artist?.name ?? song.artists?.[0]?.name ?? 'Unknown Artist';
-            const dur = song.duration ? formatDuration(Math.round(song.duration / 1000)) : '?:??';
+            const dur = song.duration ? formatDuration(song.duration) : '?:??';
             return {
                 label: (song.name ?? `Result ${i + 1}`).slice(0, 100),
                 description: `${dur} · ${artistName.slice(0, 50)}`,

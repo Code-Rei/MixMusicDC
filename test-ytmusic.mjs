@@ -26,7 +26,7 @@ console.log(`   Name    : ${s.name}`);
 console.log(`   Artist  : ${s.artist?.name ?? s.artists?.[0]?.name}`);
 console.log(`   Album   : ${s.album?.name ?? '—'}`);
 console.log(`   VideoId : ${s.videoId}`);
-console.log(`   Duration: ${Math.round(s.duration / 1000)}s`);
+console.log(`   Duration: ${s.duration}s`);
 console.log(`   YT URL  : https://music.youtube.com/watch?v=${s.videoId}`);
 console.log(`   Thumb   : ${s.thumbnails?.at(-1)?.url ?? '—'}\n`);
 
